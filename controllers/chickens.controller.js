@@ -10,10 +10,15 @@ export class ChickensController {
 
   // getChickenById
   static getChickenById = (req, res) => {
-    console.log('ChickensController : getChickenById()');
+    const id = req.params.id;
+    console.log(`ChickensController : getChickenById(${id})`);
     
-    const result = ChickensService.getChickenById();
-    res.status(200).json(result);
+    const result = ChickensService.getChickenById(id);
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.sendStatus(404);
+    }
   };
 
   // createChicken

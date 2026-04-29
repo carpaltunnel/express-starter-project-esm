@@ -33,10 +33,10 @@ export class ChickensRepository {
   }
 
   // getChickenById
-  static getChickenById = () => {
-    console.log('\t\tChickensRepository: getChickenById()');
+  static getChickenById = (id) => {
+    console.log(`\t\tChickensRepository: getChickenById(${id})`);
 
-    return {};
+    return CHICKENS.find(c => c.id === id);
   }
 
   // createChicken

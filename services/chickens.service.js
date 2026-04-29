@@ -7,9 +7,9 @@ export class ChickensService {
   }
 
   // getChickenById
-  static getChickenById = () => {
-    console.log('\tChickensService: getChickenById()');
-    return ChickensRepository.getChickenById();
+  static getChickenById = (id) => {
+    console.log(`\tChickensService: getChickenById(${id})`);
+    return ChickensRepository.getChickenById(id);
   }
 
   // createChicken
