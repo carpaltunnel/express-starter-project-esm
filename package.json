@@ -1,0 +1,23 @@
+{
+  "name": "express-starter-project-esm",
+  "version": "0.0.1",
+  "description": "ESM ExpressJS starter project",
+  "homepage": "https://github.com/carpaltunnel/express-starter-project-esm#readme",
+  "bugs": {
+    "url": "https://github.com/carpaltunnel/express-starter-project-esm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carpaltunnel/express-starter-project-esm.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
