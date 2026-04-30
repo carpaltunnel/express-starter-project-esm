@@ -1,4 +1,4 @@
-const CHICKENS = [
+let CHICKENS = [
   {
     id: '1',
     name: 'Mack',
@@ -40,8 +40,22 @@ export class ChickensRepository {
   }
 
   // createChicken
+  static createChicken = (newChicken) => {
+    console.log(`\t\tChickensRepository: createChicken()`);
+
+    CHICKENS.push(newChicken);
+    return newChicken;
+  }
 
   // replaceChicken
+  static replaceChicken = (id, replaceChicken) => {
+    console.log(`\t\tChickensRepository: replaceChicken()`);
+
+    CHICKENS = CHICKENS.filter(c => c.id !== id);
+    CHICKENS.push(replaceChicken);
+    
+    return replaceChicken;
+  }
 
   // updateChicken
 
