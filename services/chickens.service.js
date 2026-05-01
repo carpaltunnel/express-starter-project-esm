@@ -38,4 +38,9 @@ export class ChickensService {
   }
 
   // deleteChicken
+  static deleteChicken = (id) => {
+    console.log(`\tChickensService: deleteChicken()`);
+
+    return ChickensRepository.deleteChicken(id);
+  }
 }
