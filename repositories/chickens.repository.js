@@ -58,6 +58,22 @@ export class ChickensRepository {
   }
 
   // updateChicken
+  static updateChicken = (id, updateChicken) => {
+    console.log(`\t\tChickensRepository: updateChicken()`);
+
+    const chicken = CHICKENS.find(c => c.id === id);
+
+    if (!chicken) {
+      return null;
+    }
+
+    Object.keys(updateChicken).forEach((prop) => {
+      chicken[prop] = updateChicken[prop];
+    });
+
+    
+    return chicken;
+  }
 
   // deleteChicken
 }

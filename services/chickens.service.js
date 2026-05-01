@@ -30,6 +30,12 @@ export class ChickensService {
   }
 
   // updateChicken
+  static updateChicken = (id, updateChicken) => {
+    console.log(`\tChickensService: updateChicken()`);
+
+    updateChicken.id = id;
+    return ChickensRepository.updateChicken(id, updateChicken);
+  }
 
   // deleteChicken
 }
