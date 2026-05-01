@@ -1,5 +1,6 @@
 import express from 'express';
 import { ChickensController } from './controllers/chickens.controller.js';
+import { logger } from './utils/logger.js';
 const app = express();
 const port = 3000;
 
@@ -13,5 +14,5 @@ app.patch('/api/v1/chickens/:id', ChickensController.updateChicken);
 app.delete('/api/v1/chickens/:id', ChickensController.deleteChicken);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    logger.info(`Example app listening at http://localhost:${port}`);
 });
