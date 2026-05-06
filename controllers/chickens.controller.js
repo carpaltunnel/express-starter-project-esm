@@ -4,6 +4,9 @@ import { logger } from '../utils/logger.js';
 export class ChickensController {
   static getChickens = (req, res, next) => {
    logger.debug('ChickensController : getChickens()');
+
+   // FAKE AN ERROR :
+   throw new Error('boom');
     
     const result = ChickensService.getChickens();
     res.status(200).json(result);
