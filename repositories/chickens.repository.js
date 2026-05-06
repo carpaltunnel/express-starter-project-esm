@@ -5,25 +5,29 @@ let CHICKENS = [
     id: '1',
     name: 'Mack',
     breed: 'White Leghorn',
-    weight: 1.5
+    weight: 1.5,
+    age: 1,
   },
   {
     id: '2',
     name: 'EVOO',
     breed: 'Rhode Island Red',
-    weight: 1.75
+    weight: 1.75,
+    age: 2,
   },
   {
     id: '3',
     name: 'Mango',
     breed: 'Speckled Sussex',
-    weight: 2.2
+    weight: 2.2,
+    age: 3,
   },
   {
     id: '4',
     name: 'Bagel',
     breed: 'Black Star',
-    weight: 2.6
+    weight: 2.6,
+    age: 4,
   }
 ];
 
