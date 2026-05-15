@@ -2,22 +2,19 @@ import { ChickensService } from '../services/chickens.service.js';
 import { logger } from '../utils/logger.js';
 
 export class ChickensController {
-  static getChickens = (req, res, next) => {
+  static getChickens = async (req, res, next) => {
    logger.debug('ChickensController : getChickens()');
 
-   // FAKE AN ERROR :
-   throw new Error('boom');
-    
-    const result = ChickensService.getChickens();
+    const result = await ChickensService.getChickens();
     res.status(200).json(result);
   };
 
   // getChickenById
-  static getChickenById = (req, res) => {
+  static getChickenById = async (req, res) => {
     const id = req.params.id;
    logger.debug(`ChickensController : getChickenById(${id})`);
 
-    const result = ChickensService.getChickenById(id);
+    const result = await ChickensService.getChickenById(id);
     if (result) {
       res.status(200).json(result);
     } else {
@@ -26,10 +23,10 @@ export class ChickensController {
   };
 
   // createChicken
-  static createChicken = (req, res) => {
+  static createChicken = async (req, res) => {
    logger.debug('ChickensController : createChicken()');
 
-    const result = ChickensService.createChicken(req.body);
+    const result = await ChickensService.createChicken(req.body);
     res.status(201).json(result);
   }
 

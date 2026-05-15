@@ -1,3 +1,5 @@
+import { Constants } from '../utils/constants.js';
+import { database } from '../utils/database.js';
 import { logger } from '../utils/logger.js';
 
 let CHICKENS = [
@@ -33,39 +35,55 @@ let CHICKENS = [
 
 export class ChickensRepository {
   static getChickens = () => {
-   logger.debug('ChickensRepository: getChickens()');
+    logger.debug('ChickensRepository: getChickens()');
 
-    return CHICKENS;
+// TODO: Suppress _id
+    return database.db.collection(Constants.CHICKENS_COLLECTION).find(
+      {},
+      {
+        projection: {
+          _id: 0,
+        }
+      }
+    ).toArray();
   }
 
   // getChickenById
   static getChickenById = (id) => {
-   logger.debug(`ChickensRepository: getChickenById(${id})`);
+    logger.debug(`ChickensRepository: getChickenById(${id})`);
 
-    return CHICKENS.find(c => c.id === id);
+    return database.db.collection(Constants.CHICKENS_COLLECTION).findOne(
+      { id },  // { id: id }
+      {
+        projection: {
+          _id: 0,
+        }
+      }
+    );
   }
 
   // createChicken
-  static createChicken = (newChicken) => {
-   logger.debug(`ChickensRepository: createChicken()`);
+  static createChicken = async (newChicken) => {
+    logger.debug(`ChickensRepository: createChicken()`);
 
-    CHICKENS.push(newChicken);
+    await database.db.collection(Constants.CHICKENS_COLLECTION).insertOne(newChicken);
+    delete newChicken._id;
     return newChicken;
   }
 
   // replaceChicken
   static replaceChicken = (id, replaceChicken) => {
-   logger.debug(`ChickensRepository: replaceChicken()`);
+    logger.debug(`ChickensRepository: replaceChicken()`);
 
     CHICKENS = CHICKENS.filter(c => c.id !== id);
     CHICKENS.push(replaceChicken);
-    
+
     return replaceChicken;
   }
 
   // updateChicken
   static updateChicken = (id, updateChicken) => {
-   logger.debug(`ChickensRepository: updateChicken()`);
+    logger.debug(`ChickensRepository: updateChicken()`);
 
     const chicken = CHICKENS.find(c => c.id === id);
 
@@ -77,17 +95,17 @@ export class ChickensRepository {
       chicken[prop] = updateChicken[prop];
     });
 
-    
+
     return chicken;
   }
 
   // deleteChicken
   static deleteChicken = (id) => {
-   logger.debug(`ChickensRepository: deleteChicken()`);
+    logger.debug(`ChickensRepository: deleteChicken()`);
 
     const originalSize = CHICKENS.length;
     CHICKENS = CHICKENS.filter(c => c.id !== id);
-    
+
     if (originalSize === CHICKENS.length) {
       return false;
     }
