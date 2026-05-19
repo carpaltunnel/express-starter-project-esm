@@ -31,20 +31,25 @@ export class ChickensController {
   }
 
   // replaceChicken
-  static replaceChicken = (req, res) => {
+  static replaceChicken = async (req, res) => {
     const id = req.params.id;
     logger.debug(`ChickensController : replaceChicken(${id})`);
 
-    const result = ChickensService.replaceChicken(id, req.body);
+    const result = await ChickensService.replaceChicken(id, req.body);
+    if (!result) {
+      res.sendStatus(404);
+      return;
+    }
+
     res.status(200).json(result);
   }
 
   // updateChicken
-  static updateChicken = (req, res) => {
+  static updateChicken = async (req, res) => {
     const id = req.params.id;
     logger.debug(`ChickensController : updateChicken(${id})`);
 
-    const result = ChickensService.updateChicken(id, req.body);
+    const result = await ChickensService.updateChicken(id, req.body);
     if (!result) {
       res.sendStatus(404);
       return;
