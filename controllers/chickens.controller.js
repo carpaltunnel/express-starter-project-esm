@@ -3,7 +3,7 @@ import { logger } from '../utils/logger.js';
 
 export class ChickensController {
   static getChickens = async (req, res, next) => {
-   logger.debug('ChickensController : getChickens()');
+    logger.debug('ChickensController : getChickens()');
 
     const result = await ChickensService.getChickens();
     res.status(200).json(result);
@@ -12,7 +12,7 @@ export class ChickensController {
   // getChickenById
   static getChickenById = async (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : getChickenById(${id})`);
+    logger.debug(`ChickensController : getChickenById(${id})`);
 
     const result = await ChickensService.getChickenById(id);
     if (result) {
@@ -24,7 +24,7 @@ export class ChickensController {
 
   // createChicken
   static createChicken = async (req, res) => {
-   logger.debug('ChickensController : createChicken()');
+    logger.debug('ChickensController : createChicken()');
 
     const result = await ChickensService.createChicken(req.body);
     res.status(201).json(result);
@@ -33,7 +33,7 @@ export class ChickensController {
   // replaceChicken
   static replaceChicken = (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : replaceChicken(${id})`);
+    logger.debug(`ChickensController : replaceChicken(${id})`);
 
     const result = ChickensService.replaceChicken(id, req.body);
     res.status(200).json(result);
@@ -42,7 +42,7 @@ export class ChickensController {
   // updateChicken
   static updateChicken = (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : updateChicken(${id})`);
+    logger.debug(`ChickensController : updateChicken(${id})`);
 
     const result = ChickensService.updateChicken(id, req.body);
     if (!result) {
@@ -54,11 +54,11 @@ export class ChickensController {
   }
 
   // deleteChicken
-  static deleteChicken = (req, res) => {
+  static deleteChicken = async (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : deleteChicken(${id})`);
+    logger.debug(`ChickensController : deleteChicken(${id})`);
 
-    const result = ChickensService.deleteChicken(id);
+    const result = await ChickensService.deleteChicken(id);
     if (!result) {
       res.sendStatus(404);
       return;

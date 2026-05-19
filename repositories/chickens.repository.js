@@ -100,15 +100,13 @@ export class ChickensRepository {
   }
 
   // deleteChicken
-  static deleteChicken = (id) => {
+  static deleteChicken = async (id) => {
     logger.debug(`ChickensRepository: deleteChicken()`);
 
-    const originalSize = CHICKENS.length;
-    CHICKENS = CHICKENS.filter(c => c.id !== id);
+    const result = await database.db.collection(Constants.CHICKENS_COLLECTION).deleteOne({
+      id, //id: id
+    });
 
-    if (originalSize === CHICKENS.length) {
-      return false;
-    }
-    return true;
+    return result.deletedCount === 0 ? false : true;
   }
 }
