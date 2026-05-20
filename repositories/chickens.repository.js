@@ -1,4 +1,3 @@
-import { ReturnDocument } from 'mongodb';
 import { Constants } from '../utils/constants.js';
 import { database } from '../utils/database.js';
 import { logger } from '../utils/logger.js';
@@ -72,7 +71,7 @@ export class ChickensRepository {
     },
       updateStatement,
       {
-        ReturnDocument: 'after',
+        returnDocument: 'after',
       }
     );
 
