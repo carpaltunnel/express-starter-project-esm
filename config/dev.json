@@ -1,0 +1,8 @@
+{
+  "logLevel": "debug",
+  "mongo": {
+    "url": "mongodb://localhost:27017",
+    "minPoolSize": 2,
+    "maxPoolSize": 5
+  }
+}

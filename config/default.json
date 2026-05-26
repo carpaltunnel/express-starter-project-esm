@@ -1,0 +1,11 @@
+{
+  "appName": "ChickensAPI",
+  "logLevel": "debug",
+  "mongo": {
+    // username/passwords
+    "database": "arca",
+    "url": "mongodb://127.0.0.1:27017",
+    "minPoolSize": 1,
+    "maxPoolSize": 1
+  }
+}

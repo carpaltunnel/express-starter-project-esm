@@ -1,12 +1,13 @@
+import config from 'config';
 import { createLogger, format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, label, printf } = format;
 
-const level = 'debug';
+const logLevel = config.get('logLevel');
 
 const myFormat = printf(({ level, message, label, timestamp }) => {
   return JSON.stringify({
-    logLevel: level,
+    level: logLevel,
     message,
     timestamp,
     service: label,
@@ -14,9 +15,9 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 });
 
 export const logger = createLogger({
-  level,
+  level: logLevel,
   format: combine(
-    label({ label: 'CHICKENS-API' }),
+    label({ label: config.get('appName') }),
     timestamp(),
   myFormat
   ),
