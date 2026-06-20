@@ -1,4 +1,5 @@
 import { ChickensService } from '../services/chickens.service.js';
+import { Constants } from '../utils/constants.js';
 import { logger } from '../utils/logger.js';
 
 export class ChickensController {
@@ -26,16 +27,9 @@ export class ChickensController {
   static createChicken = async (req, res) => {
     logger.debug('ChickensController : createChicken()');
 
-    // multer adds "req.file"
-    // TODO: REMOVE : 
-    console.log(`originalname = ${req.file.originalname}`);
-    /*
-    {
-  "fieldname": "chickenImage",
-  "originalname": "arca-gem-icon.svg",
-  "encoding": "7bit",
-  "mimetype": "image/svg+xml",
-    */
+    if (req.file?.filename) {
+      req.body.imageUrl = `${Constants.IMAGE_STATIC_PATH}${req.file.filename}`;
+    }
 
     const result = await ChickensService.createChicken(req.body);
     res.status(201).json(result);
