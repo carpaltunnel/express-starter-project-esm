@@ -26,6 +26,17 @@ export class ChickensController {
   static createChicken = async (req, res) => {
     logger.debug('ChickensController : createChicken()');
 
+    // multer adds "req.file"
+    // TODO: REMOVE : 
+    console.log(`originalname = ${req.file.originalname}`);
+    /*
+    {
+  "fieldname": "chickenImage",
+  "originalname": "arca-gem-icon.svg",
+  "encoding": "7bit",
+  "mimetype": "image/svg+xml",
+    */
+
     const result = await ChickensService.createChicken(req.body);
     res.status(201).json(result);
   }

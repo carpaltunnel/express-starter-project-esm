@@ -2,8 +2,8 @@ import { logger } from '../utils/logger.js';
 
 export const chickenAgeMiddleware = (req, res, next) => {
   logger.info('chickenAgeMiddleware invoked');
-
-  if (!req.body.age) {
+console.log(req.body);
+  if (!req.body?.age) { // if(!req.body && !req.body.age)
     logger.warn('chickenAgeMiddleware: no age property, calling next()');
     next();
     return;

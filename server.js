@@ -9,11 +9,16 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+//app.use((req, res) => {
+//  console.log(`URL: ${req.url}, Method: ${req.method}, Body: ${JSON.stringify(req.body)}`);
+//});
+
 app.use('/api/v1/chickens', chickenRouter);
 
 
 // Error handler middleware - MUST BE THE LAST MIDDLEWARE
-app.use(errorHandlerMiddleware);
+//app.use(errorHandlerMiddleware);
 
 // Environment based config
 const mongoConfig = config.get('mongo');
