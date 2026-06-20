@@ -6,6 +6,7 @@ export class ChickensController {
   /**
    * getChickens - Controller function for the /api/v1/chickens route
    * that fetches an array of Chickens from the db.
+   * @memberof ChickensController
    * @param {Request} req - The express.js Request
    * @param {Response} res - The express.js Response
    * @param {*} next - The next() middleware

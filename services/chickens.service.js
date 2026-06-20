@@ -1,6 +1,13 @@
 import { v4 as uuid } from 'uuid';
+import AJV from 'ajv';
+import addFormats from 'ajv-formats';
 import { ChickensRepository } from '../repositories/chickens.repository.js';
 import { logger } from '../utils/logger.js';
+import chickenSchema from '../schemas/chicken.schema.json' with { type: 'json' };
+
+const ajv = new AJV();
+addFormats(ajv);
+const validate = ajv.compile(chickenSchema);
 
 export class ChickensService {
   static getChickens = () => {
@@ -19,6 +26,11 @@ export class ChickensService {
     logger.debug(`ChickensService: createChicken()`);
 
     newChicken.id = uuid();
+    const valid = validate(newChicken);
+    if (!valid) {
+      throw validate.errors;
+    }
+
     return ChickensRepository.createChicken(newChicken);
   }
 
