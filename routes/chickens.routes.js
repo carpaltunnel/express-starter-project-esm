@@ -8,7 +8,7 @@ const multerStorage = multer.diskStorage({
   destination,
   filename,
 });
-const upload = multer({ multerStorage })
+const upload = multer({ storage: multerStorage })
 
 export const chickenRouter = express.Router();
 

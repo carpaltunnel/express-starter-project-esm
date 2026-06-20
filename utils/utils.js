@@ -1,5 +1,7 @@
+import { v4 as uuid } from 'uuid';
+
 export const filename = (req, file, cb) => {
-  cb(null, 'uploaded-gem-file.svg')
+  cb(null, `${uuid()}${file.originalname.slice(file.originalname.lastIndexOf('.'))}`)
 }
 
 export const destination = (req, file, cb) => {
