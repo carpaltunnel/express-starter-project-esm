@@ -31,6 +31,10 @@ export class ChickensController {
       req.body.imageUrl = `${Constants.IMAGE_STATIC_PATH}${req.file.filename}`;
     }
 
+    if (req.body?.weight) {
+      req.body.weight = Number(req.body.weight) || 0;
+    }
+
     const result = await ChickensService.createChicken(req.body);
     res.status(201).json(result);
   }
