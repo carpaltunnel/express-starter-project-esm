@@ -3,6 +3,13 @@ import { Constants } from '../utils/constants.js';
 import { logger } from '../utils/logger.js';
 
 export class ChickensController {
+  /**
+   * getChickens - Controller function for the /api/v1/chickens route
+   * that fetches an array of Chickens from the db.
+   * @param {Request} req - The express.js Request
+   * @param {Response} res - The express.js Response
+   * @param {*} next - The next() middleware
+   */
   static getChickens = async (req, res, next) => {
     logger.debug('ChickensController : getChickens()');
 
