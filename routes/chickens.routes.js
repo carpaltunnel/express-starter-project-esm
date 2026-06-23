@@ -16,7 +16,11 @@ export const chickenRouter = express.Router();
 
 chickenRouter.get('/', ChickensController.getChickens);
 chickenRouter.get('/:id', ChickensController.getChickenById);
-chickenRouter.post('/',[chickenAgeMiddleware, upload.single('chickenImage')],ChickensController.createChicken);
+chickenRouter.post(
+  '/',
+  [chickenAgeMiddleware, upload.single('chickenImage')],
+  ChickensController.createChicken
+);
 chickenRouter.put(
   '/:id',
   chickenAgeMiddleware,
