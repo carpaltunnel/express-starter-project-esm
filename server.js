@@ -24,5 +24,5 @@ await database.setup({
 });
 
 app.listen(port, () => {
-    logger.info(`Example app listening at http://localhost:${port}`);
+  logger.info(`Example app listening at http://localhost:${port}`);
 });

@@ -9,13 +9,22 @@ const multerStorage = multer.diskStorage({
   filename,
 });
 const upload = multer({
-  storage: multerStorage})
+  storage: multerStorage,
+});
 
 export const chickenRouter = express.Router();
 
 chickenRouter.get('/', ChickensController.getChickens);
 chickenRouter.get('/:id', ChickensController.getChickenById);
-chickenRouter.post('/', [chickenAgeMiddleware, upload.single('chickenImage')], ChickensController.createChicken);
-chickenRouter.put('/:id', chickenAgeMiddleware, ChickensController.replaceChicken);
-chickenRouter.patch('/:id', chickenAgeMiddleware, ChickensController.updateChicken);
+chickenRouter.post('/',[chickenAgeMiddleware, upload.single('chickenImage')],ChickensController.createChicken);
+chickenRouter.put(
+  '/:id',
+  chickenAgeMiddleware,
+  ChickensController.replaceChicken
+);
+chickenRouter.patch(
+  '/:id',
+  chickenAgeMiddleware,
+  ChickensController.updateChicken
+);
 chickenRouter.delete('/:id', ChickensController.deleteChicken);

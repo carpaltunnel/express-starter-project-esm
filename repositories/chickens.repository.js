@@ -4,21 +4,24 @@ import { logger } from '../utils/logger.js';
 
 export class ChickensRepository {
   /**
-   * 
+   *
    * @returns An array of Chicken objects
    */
   static getChickens = () => {
     logger.debug('ChickensRepository: getChickens()');
 
-    return database.db.collection(Constants.CHICKENS_COLLECTION).find(
-      {},
-      {
-        projection: {
-          _id: 0,
+    return database.db
+      .collection(Constants.CHICKENS_COLLECTION)
+      .find(
+        {},
+        {
+          projection: {
+            _id: 0,
+          },
         }
-      }
-    ).toArray();
-  }
+      )
+      .toArray();
+  };
 
   /**
    * getChickenById - Fetch one document from Mongo that has an `id` property
@@ -30,38 +33,45 @@ export class ChickensRepository {
     logger.debug(`ChickensRepository: getChickenById(${id})`);
 
     return database.db.collection(Constants.CHICKENS_COLLECTION).findOne(
-      { id },  // { id: id }
+      { id }, // { id: id }
       {
         projection: {
           _id: 0,
-        }
+        },
       }
     );
-  }
+  };
 
   // createChicken
   static createChicken = async (newChicken) => {
     logger.debug(`ChickensRepository: createChicken()`);
 
-    await database.db.collection(Constants.CHICKENS_COLLECTION).insertOne(newChicken);
+    await database.db
+      .collection(Constants.CHICKENS_COLLECTION)
+      .insertOne(newChicken);
     delete newChicken._id;
     return newChicken;
-  }
+  };
 
   // replaceChicken
   static replaceChicken = async (id, replaceChicken) => {
     logger.debug(`ChickensRepository: replaceChicken()`);
 
-    const result = await database.db.collection(Constants.CHICKENS_COLLECTION).replaceOne({
-      id,
-    }, replaceChicken);
+    const result = await database.db
+      .collection(Constants.CHICKENS_COLLECTION)
+      .replaceOne(
+        {
+          id,
+        },
+        replaceChicken
+      );
 
     if (result.matchedCount === 0) {
       return false;
     }
 
     return replaceChicken;
-  }
+  };
 
   // updateChicken
   static updateChicken = async (id, updateChicken) => {
@@ -75,30 +85,35 @@ export class ChickensRepository {
       updateStatement.$set[key] = updateChicken[key]; //name: updateChicken.name
     });
 
-    const result = await database.db.collection(Constants.CHICKENS_COLLECTION).findOneAndUpdate({
-      id,
-    },
-      updateStatement,
-      {
-        returnDocument: 'after',
-      }
-    );
+    const result = await database.db
+      .collection(Constants.CHICKENS_COLLECTION)
+      .findOneAndUpdate(
+        {
+          id,
+        },
+        updateStatement,
+        {
+          returnDocument: 'after',
+        }
+      );
 
     if (result) {
       delete result._id;
     }
 
     return result;
-  }
+  };
 
   // deleteChicken
   static deleteChicken = async (id) => {
     logger.debug(`ChickensRepository: deleteChicken()`);
 
-    const result = await database.db.collection(Constants.CHICKENS_COLLECTION).deleteOne({
-      id, //id: id
-    });
+    const result = await database.db
+      .collection(Constants.CHICKENS_COLLECTION)
+      .deleteOne({
+        id, //id: id
+      });
 
     return result.deletedCount === 0 ? false : true;
-  }
+  };
 }

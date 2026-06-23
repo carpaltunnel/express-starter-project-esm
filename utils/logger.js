@@ -1,11 +1,13 @@
 import config from 'config';
 import { createLogger, format, transports } from 'winston';
+// Temporarily disabled the eslint rule for "no-unused-vars"
+// eslint-disable-next-line no-unused-vars
 import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, label, printf } = format;
 
 const logLevel = config.get('logLevel');
 
-const myFormat = printf(({ level, message, label, timestamp }) => {
+const myFormat = printf(({ level: logLevel, message, label, timestamp }) => {
   return JSON.stringify({
     level: logLevel,
     message,
@@ -19,7 +21,7 @@ export const logger = createLogger({
   format: combine(
     label({ label: config.get('appName') }),
     timestamp(),
-  myFormat
+    myFormat
   ),
   transports: [
     new transports.Console(),
@@ -31,5 +33,5 @@ export const logger = createLogger({
       maxSize: '20m',
       maxFiles: '14d'
     })*/
-  ]
+  ],
 });

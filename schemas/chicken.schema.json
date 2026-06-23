@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://my-app-domain/schemas/chickens",
+  "title": "Chicken",
+  "description": "Schema for the chicken type",
+  "type": "object",
+  "required": ["id", "name", "weight", "color"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Unique identifier for the chicken",
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "description": "Name of the chicken",
+      "type": "string"
+    },
+    "weight": {
+      "type": "number"
+    },
+    "color": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    }
+  }
+}

@@ -11,7 +11,7 @@ export class ChickensController {
    * @param {Response} res - The express.js Response
    * @param {*} next - The next() middleware
    */
-  static getChickens = async (req, res, next) => {
+  static getChickens = async (req, res) => {
     logger.debug('ChickensController : getChickens()');
 
     const result = await ChickensService.getChickens();
@@ -45,7 +45,7 @@ export class ChickensController {
 
     const result = await ChickensService.createChicken(req.body);
     res.status(201).json(result);
-  }
+  };
 
   // replaceChicken
   static replaceChicken = async (req, res) => {
@@ -59,7 +59,7 @@ export class ChickensController {
     }
 
     res.status(200).json(result);
-  }
+  };
 
   // updateChicken
   static updateChicken = async (req, res) => {
@@ -73,7 +73,7 @@ export class ChickensController {
     }
 
     res.status(200).json(result);
-  }
+  };
 
   // deleteChicken
   static deleteChicken = async (req, res) => {
@@ -87,5 +87,5 @@ export class ChickensController {
     }
 
     res.sendStatus(204);
-  }
+  };
 }

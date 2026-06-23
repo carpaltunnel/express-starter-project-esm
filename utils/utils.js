@@ -10,8 +10,11 @@ import { Constants } from './constants.js';
  * @returns {String} - filename
  */
 export const filename = (req, file, cb) => {
-  cb(null, `${uuid()}${file.originalname.slice(file.originalname.lastIndexOf('.'))}`)
-}
+  cb(
+    null,
+    `${uuid()}${file.originalname.slice(file.originalname.lastIndexOf('.'))}`
+  );
+};
 
 /**
  * Function to dynamically generate the destination path for
@@ -22,5 +25,5 @@ export const filename = (req, file, cb) => {
  * @returns {String} - destination path
  */
 export const destination = (req, file, cb) => {
- cb(null, Constants.IMAGE_UPLOAD_PATH);
-}
+  cb(null, Constants.IMAGE_UPLOAD_PATH);
+};

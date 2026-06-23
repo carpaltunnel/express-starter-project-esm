@@ -13,13 +13,13 @@ export class ChickensService {
   static getChickens = () => {
     logger.debug('ChickensService: getChickens()');
     return ChickensRepository.getChickens();
-  }
+  };
 
   // getChickenById
   static getChickenById = (id) => {
     logger.debug(`ChickensService: getChickenById(${id})`);
     return ChickensRepository.getChickenById(id);
-  }
+  };
 
   // createChicken
   static createChicken = (newChicken) => {
@@ -32,7 +32,7 @@ export class ChickensService {
     }
 
     return ChickensRepository.createChicken(newChicken);
-  }
+  };
 
   // replaceChicken
   static replaceChicken = (id, replaceChicken) => {
@@ -40,7 +40,7 @@ export class ChickensService {
 
     replaceChicken.id = id;
     return ChickensRepository.replaceChicken(id, replaceChicken);
-  }
+  };
 
   // updateChicken
   static updateChicken = (id, updateChicken) => {
@@ -48,12 +48,12 @@ export class ChickensService {
 
     updateChicken.id = id;
     return ChickensRepository.updateChicken(id, updateChicken);
-  }
+  };
 
   // deleteChicken
   static deleteChicken = (id) => {
     logger.debug(`ChickensService: deleteChicken()`);
 
     return ChickensRepository.deleteChicken(id);
-  }
+  };
 }
